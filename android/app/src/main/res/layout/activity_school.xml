@@ -38,7 +38,6 @@
                 android:id="@+id/etMeetingId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ddd"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +51,6 @@
                 android:id="@+id/etJwtToken"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ddd"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,6 +60,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Launch Class"/>
+            android:text="Launch Class"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAppVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="8dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

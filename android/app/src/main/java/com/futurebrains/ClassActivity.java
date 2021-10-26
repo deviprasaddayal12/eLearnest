@@ -1,16 +1,19 @@
 package com.futurebrains;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.futurebrains.databinding.ActivitySchoolBinding;
-import com.futurebrains.sdk.JitsiMeetActivity;
-import com.futurebrains.sdk.JitsiMeetConferenceOptions;
+
+import org.jitsi.meet.sdk.JitsiMeet;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 
 public class ClassActivity extends AppCompatActivity {
     private String BASE_URL = "https://demo-eschool.examdo.co.in";
@@ -39,6 +42,7 @@ public class ClassActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        JitsiMeet.showSplashScreen(this);
         super.onCreate(savedInstanceState);
 
         Uri deepLinkUri = getIntent().getData();
@@ -55,6 +59,12 @@ public class ClassActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            binding.tvAppVersion.setText("v" + pInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         if (!meetingId.isEmpty() && !jwt.isEmpty())
             prepareJitsi();

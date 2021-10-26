@@ -21,9 +21,9 @@ android {
     }
 
     defaultConfig {
-        applicationId 'org.jitsi.meet'
-        versionCode vcode
-        versionName project.appVersion
+        applicationId 'com.futurebrains'
+        versionCode 4
+        versionName "1.2"
 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -72,11 +72,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.4.0'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 

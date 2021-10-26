@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="@android:color/white" />-->
+<!--            <size android:width="100dp" android:height="600dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+    <item
+        android:drawable="@drawable/app_banner"
+        android:gravity="center"
+        android:top="100dp"
+        android:bottom="100dp"
+        android:start="100dp"
+        android:end="100dp"/>
+</layer-list>
