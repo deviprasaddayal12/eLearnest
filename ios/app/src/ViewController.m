@@ -29,14 +29,14 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    JitsiMeetView *view = (JitsiMeetView *) self.view;
-    view.delegate = self;
-
-    [view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    JitsiMeetView *view = (JitsiMeetView *) self.view;
+//    view.delegate = self;
+//
+//    [view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
+//}
 
 // JitsiMeetViewDelegate
 
@@ -137,9 +137,9 @@
 
 #pragma mark - Helpers
 
-- (void)terminate {
-    JitsiMeetView *view = (JitsiMeetView *) self.view;
-    [view leave];
-}
+//- (void)terminate {
+//    JitsiMeetView *view = (JitsiMeetView *) self.view;
+//    [view leave];
+//}
 
 @end

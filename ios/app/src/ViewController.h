@@ -17,7 +17,8 @@
 @import UIKit;
 @import JitsiMeetSDK;
 
-@interface ViewController : UIViewController<JitsiMeetViewDelegate>
+@interface ViewController: UIView
+//: UIViewController<JitsiMeetViewDelegate>
 
 - (void)terminate;
 

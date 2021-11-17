@@ -56,8 +56,8 @@
         [[FIRCrashlytics crashlytics] setCrashlyticsCollectionEnabled:![jitsiMeet isCrashReportingDisabled]];
     }
 
-    ViewController *rootController = (ViewController *)self.window.rootViewController;
-    [jitsiMeet showSplashScreen:rootController.view];
+    //ViewController *rootController = (ViewController *)self.window.rootViewController;
+    //[jitsiMeet showSplashScreen:rootController.view];
 
     return YES;
 }
