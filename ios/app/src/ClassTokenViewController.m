@@ -7,6 +7,9 @@
 //
 
 #import "ClassTokenViewController.h"
+#import "ViewController.h"
+
+@import JitsiMeetSDK;
 
 @interface ClassTokenViewController ()
 
@@ -14,9 +17,18 @@
 
 @implementation ClassTokenViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  NSString *deeplinkUrl = [[NSUserDefaults standardUserDefaults]
+      stringForKey:@"deeplinkUrl"];
+  NSLog(@"deeplinkUrl = %@", deeplinkUrl);
+  
+  if (deeplinkUrl != NULL) {
+    //self.tfClassName.text = self.deeplinkUrl.query;
+    ViewController *meetController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+        [self.navigationController pushViewController:meetController animated:YES];
+  }
 }
 
 - (IBAction)launchClass:(UIButton *)sender {
@@ -25,11 +37,30 @@
   
   if ([className isEqualToString:@""]) {
     NSLog(@"empty class name");
+    [self showInfoAlert:@"Please enter class name"];
   } else if ([token isEqualToString:@""]) {
     NSLog(@"empty token");
+    [self showInfoAlert:@"Please enter token"];
   } else {
     NSLog(@"launch jitsi");
+    ViewController *meetController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    meetController.className = className;
+    meetController.token = token;
+    [self.navigationController pushViewController:meetController animated:YES];
   }
+}
+
+-(void) showInfoAlert: (NSString * ) msg {
+  UIAlertController * alertvc = [UIAlertController alertControllerWithTitle: @ "Invalid Information"
+                                 message: msg preferredStyle: UIAlertControllerStyleAlert
+                                ];
+  UIAlertAction * action = [UIAlertAction actionWithTitle: @ "Dismiss"
+                            style: UIAlertActionStyleDefault handler: ^ (UIAlertAction * _Nonnull action) {
+                              NSLog(@ "Dismiss Tapped");
+                            }
+                           ];
+  [alertvc addAction: action];
+  [self presentViewController: alertvc animated: true completion: nil];
 }
 
 /*

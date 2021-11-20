@@ -12,8 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ClassTokenViewController : UIViewController {    
 }
+
+//@property (nonatomic, assign) NSString *deeplinkUrl;
 @property (weak, nonatomic) IBOutlet UITextField *tfToken;
 @property (weak, nonatomic) IBOutlet UITextField *tfClassName;
+
+@property (nonatomic, strong) UIWindow *window;
 
 @end
 

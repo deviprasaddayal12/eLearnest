@@ -29,16 +29,42 @@
 
 @implementation ViewController
 
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//
-//    JitsiMeetView *view = (JitsiMeetView *) self.view;
-//    view.delegate = self;
-//
-//    [view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
-//}
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-// JitsiMeetViewDelegate
+    JitsiMeetView *view = (JitsiMeetView *) self.view;
+    view.delegate = self;
+  
+  JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
+    
+    NSString *deeplinkUrl = [[NSUserDefaults standardUserDefaults]
+          stringForKey:@"deeplinkUrl"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deeplinkUrl"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (deeplinkUrl != NULL) {
+      deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"deeplink?meeting_id="
+                                           withString:@""];
+      deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"&"
+                                                           withString:@"?"];
+      //NSLog(deeplinkUrl);
+      builder.room = deeplinkUrl;
+    } else {
+      builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:self.className] stringByAppendingString:@"?jwt="] stringByAppendingString:self.token];
+    }
+      builder.audioOnly = NO;
+      builder.audioMuted = YES;
+      builder.videoMuted = YES;
+      builder.welcomePageEnabled = NO;
+      [builder setConfigOverride:@"requireDisplayName" withBoolean:YES];
+  }];
+
+  [view join:options];
+
+    //[view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
+}
+
+ //JitsiMeetViewDelegate
 
 - (void)_onJitsiMeetViewDelegateEvent:(NSString *)name
                              withData:(NSDictionary *)data {
@@ -137,9 +163,9 @@
 
 #pragma mark - Helpers
 
-//- (void)terminate {
-//    JitsiMeetView *view = (JitsiMeetView *) self.view;
-//    [view leave];
-//}
+- (void)terminate {
+    JitsiMeetView *view = (JitsiMeetView *) self.view;
+    [view leave];
+}
 
 @end

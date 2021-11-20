@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "FIRUtilities.h"
 #import "Types.h"
+#import "ClassTokenViewController.h"
 #import "ViewController.h"
 
 @import Firebase;
@@ -30,14 +31,13 @@
     JitsiMeet *jitsiMeet = [JitsiMeet sharedInstance];
 
     jitsiMeet.conferenceActivityType = JitsiMeetConferenceActivityType;
-    jitsiMeet.customUrlScheme = @"org.jitsi.meet";
-    jitsiMeet.universalLinkDomains = @[@"meet.jit.si", @"alpha.jitsi.net", @"beta.meet.jit.si"];
+    jitsiMeet.customUrlScheme = @"demo-eschool.examdo.co.in";
+    jitsiMeet.universalLinkDomains = @[@"demo-eschool.examdo.co.in"];
 
     jitsiMeet.defaultConferenceOptions = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
         [builder setFeatureFlag:@"resolution" withValue:@(360)];
         [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
-        builder.serverURL = [NSURL URLWithString:@"https://meet.jit.si"];
-        builder.welcomePageEnabled = YES;
+        builder.welcomePageEnabled = NO;
 
         // Apple rejected our app because they claim requiring a
         // Dropbox account for recording is not acceptable.
@@ -65,8 +65,8 @@
 - (void) applicationWillTerminate:(UIApplication *)application {
     NSLog(@"Application will terminate!");
     // Try to leave the current meeting graceefully.
-    ViewController *rootController = (ViewController *)self.window.rootViewController;
-    [rootController terminate];
+    //ViewController *rootController = (ViewController *)self.window.rootViewController;
+    //[rootController terminate];
 }
 
 #pragma mark Linking delegate methods
@@ -74,6 +74,26 @@
 -    (BOOL)application:(UIApplication *)application
   continueUserActivity:(NSUserActivity *)userActivity
     restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
+  
+  if (userActivity.webpageURL != NULL) {
+    NSLog(@"Non-null deeplink url");
+    
+    NSString *deeplinkUrl = userActivity.webpageURL.absoluteString;
+    [[NSUserDefaults standardUserDefaults] setObject:deeplinkUrl forKey:@"deeplinkUrl"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    //ClassTokenViewController *ctController = [navController.viewControllers objectAtIndex:0];
+    //ctController.deeplinkUrl = userActivity.webpageURL.absoluteString;
+    
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //ViewController *meetController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    //meetController.deeplinkUrl = userActivity.webpageURL.absoluteString;
+    
+        //[navController pushViewController:meetController animated:YES];
+    
+    return YES;
+  }
 
     if ([FIRUtilities appContainsRealServiceInfoPlist]) {
         // 1. Attempt to handle Universal Links through Firebase in order to support
@@ -96,6 +116,8 @@
           return handled;
         }
     }
+  
+  
 
     // 2. Default to plain old, non-Firebase-assisted Universal Links.
     return [[JitsiMeet sharedInstance] application:application
