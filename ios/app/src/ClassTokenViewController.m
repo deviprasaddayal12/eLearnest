@@ -43,9 +43,11 @@
     [self showInfoAlert:@"Please enter token"];
   } else {
     NSLog(@"launch jitsi");
+    [[NSUserDefaults standardUserDefaults] setObject:className forKey:@"className"];
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     ViewController *meetController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    meetController.className = className;
-    meetController.token = token;
     [self.navigationController pushViewController:meetController animated:YES];
   }
 }

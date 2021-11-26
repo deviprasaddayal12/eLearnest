@@ -50,7 +50,13 @@
       //NSLog(deeplinkUrl);
       builder.room = deeplinkUrl;
     } else {
-      builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:self.className] stringByAppendingString:@"?jwt="] stringByAppendingString:self.token];
+      NSString *className = [[NSUserDefaults standardUserDefaults] stringForKey:@"className"];
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"className"];
+      NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+      
+      builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:className] stringByAppendingString:@"?jwt="] stringByAppendingString:token];
     }
       builder.audioOnly = NO;
       builder.audioMuted = YES;
