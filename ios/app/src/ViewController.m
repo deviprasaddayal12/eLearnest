@@ -35,39 +35,53 @@
     JitsiMeetView *view = (JitsiMeetView *) self.view;
     view.delegate = self;
   
-  JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
-    
-    NSString *deeplinkUrl = [[NSUserDefaults standardUserDefaults]
-          stringForKey:@"deeplinkUrl"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deeplinkUrl"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if (deeplinkUrl != NULL) {
-      deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"deeplink?meeting_id="
-                                           withString:@""];
-      deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"&"
-                                                           withString:@"?"];
-      //NSLog(deeplinkUrl);
-      builder.room = deeplinkUrl;
-    } else {
+  @try {
+    JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
+      
+      NSString *deeplinkUrl = [[NSUserDefaults standardUserDefaults]
+            stringForKey:@"deeplinkUrl"];
       NSString *className = [[NSUserDefaults standardUserDefaults] stringForKey:@"className"];
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"className"];
       NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
-      [[NSUserDefaults standardUserDefaults] synchronize];
+      
+      if (deeplinkUrl != NULL) {
+        deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"https://demo-eschool.examdo.co.in/deeplink?meetingId"
+                                             withString:@""];
+        NSLog(@"deeplink.url.replace = %@", deeplinkUrl);
+        
+        deeplinkUrl = [deeplinkUrl stringByReplacingOccurrencesOfString:@"&jwt"
+                                                                   withString:@""];
+        NSLog(@"deeplink.url.& = %@", deeplinkUrl);
+        
+        NSArray *paramsArray = [deeplinkUrl componentsSeparatedByString:@"="];
+        NSLog(@"deeplink.url.split = %@", paramsArray);
+        
+        className = paramsArray[1];
+        token = paramsArray[2];
+  //      builder.room = deeplinkUrl;
+      }
+  //    else {
+  //      builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:className] stringByAppendingString:@"?jwt="] stringByAppendingString:token];
+  //    }
       
       builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:className] stringByAppendingString:@"?jwt="] stringByAppendingString:token];
-    }
-      builder.audioOnly = NO;
-      builder.audioMuted = YES;
-      builder.videoMuted = YES;
-      builder.welcomePageEnabled = NO;
-      [builder setConfigOverride:@"requireDisplayName" withBoolean:YES];
-  }];
+      
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"className"];
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deeplinkUrl"];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+      
+        builder.audioOnly = NO;
+        builder.audioMuted = YES;
+        builder.videoMuted = YES;
+        builder.welcomePageEnabled = NO;
+        [builder setConfigOverride:@"requireDisplayName" withBoolean:YES];
+    }];
 
-  [view join:options];
-
-    //[view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
+    [view join:options];
+  }
+  @catch(NSException *exception) {
+    NSLog(@"%@", exception.reason);
+  }
 }
 
  //JitsiMeetViewDelegate

@@ -45,6 +45,7 @@
     NSLog(@"launch jitsi");
     [[NSUserDefaults standardUserDefaults] setObject:className forKey:@"className"];
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deeplinkUrl"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     ViewController *meetController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];

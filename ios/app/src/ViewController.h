@@ -19,10 +19,6 @@
 
 @interface ViewController: UIViewController<JitsiMeetViewDelegate>
 
-//@property (nonatomic, assign) NSString *deeplinkUrl;
-//@property (nonatomic, assign) NSString *className;
-//@property (nonatomic, assign) NSString *token;
-
 - (void)terminate;
 
 @end

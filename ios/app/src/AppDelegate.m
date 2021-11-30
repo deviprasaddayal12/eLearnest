@@ -28,45 +28,11 @@
 
 -             (BOOL)application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    JitsiMeet *jitsiMeet = [JitsiMeet sharedInstance];
-
-    jitsiMeet.conferenceActivityType = JitsiMeetConferenceActivityType;
-    jitsiMeet.customUrlScheme = @"demo-eschool.examdo.co.in";
-    jitsiMeet.universalLinkDomains = @[@"demo-eschool.examdo.co.in"];
-
-    jitsiMeet.defaultConferenceOptions = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
-        [builder setFeatureFlag:@"resolution" withValue:@(360)];
-        [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
-        builder.welcomePageEnabled = NO;
-
-        // Apple rejected our app because they claim requiring a
-        // Dropbox account for recording is not acceptable.
-#if DEBUG
-        [builder setFeatureFlag:@"ios.recording.enabled" withBoolean:YES];
-#endif
-    }];
-
-  [jitsiMeet application:application didFinishLaunchingWithOptions:launchOptions];
-
-    // Initialize Crashlytics and Firebase if a valid GoogleService-Info.plist file was provided.
-  if ([FIRUtilities appContainsRealServiceInfoPlist]) {
-        NSLog(@"Enabling Firebase");
-        [FIRApp configure];
-        // Crashlytics defaults to disabled with the FirebaseCrashlyticsCollectionEnabled Info.plist key.
-        [[FIRCrashlytics crashlytics] setCrashlyticsCollectionEnabled:![jitsiMeet isCrashReportingDisabled]];
-    }
-
-    //ViewController *rootController = (ViewController *)self.window.rootViewController;
-    //[jitsiMeet showSplashScreen:rootController.view];
-
     return YES;
 }
 
 - (void) applicationWillTerminate:(UIApplication *)application {
     NSLog(@"Application will terminate!");
-    // Try to leave the current meeting graceefully.
-    //ViewController *rootController = (ViewController *)self.window.rootViewController;
-    //[rootController terminate];
 }
 
 #pragma mark Linking delegate methods
@@ -76,79 +42,89 @@
     restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
   
   if (userActivity.webpageURL != NULL) {
-    NSLog(@"Non-null deeplink url");
+    NSString *inputUrl = userActivity.webpageURL.absoluteString;
+    NSLog(@"openUrl.deeplink.inputUrl: %@", inputUrl);
+    NSString *finalDeeplinkUrl = @"";
+    if ([inputUrl containsString:@"https"]) {
+      NSArray *urlArray = [inputUrl componentsSeparatedByString:@"https"];
+      NSLog(@"openUrl.deeplink.urlArray: %@", urlArray);
+      NSLog(@"openUrl.deeplink.urlArray[0]: %@", urlArray[0]);
+      finalDeeplinkUrl = [NSString stringWithFormat:@"https%@", [urlArray lastObject]];
+      NSLog(@"openUrl.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
+    } else
+      finalDeeplinkUrl = inputUrl;
+    NSLog(@"openUrl.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
     
-    NSString *deeplinkUrl = userActivity.webpageURL.absoluteString;
-    [[NSUserDefaults standardUserDefaults] setObject:deeplinkUrl forKey:@"deeplinkUrl"];
+    [[NSUserDefaults standardUserDefaults] setObject:finalDeeplinkUrl forKey:@"deeplinkUrl"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    //UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-    //ClassTokenViewController *ctController = [navController.viewControllers objectAtIndex:0];
-    //ctController.deeplinkUrl = userActivity.webpageURL.absoluteString;
-    
-    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //ViewController *meetController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    //meetController.deeplinkUrl = userActivity.webpageURL.absoluteString;
-    
-        //[navController pushViewController:meetController animated:YES];
+
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    [navController pushViewController:viewController animated:YES];
     
     return YES;
   }
 
-    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
-        // 1. Attempt to handle Universal Links through Firebase in order to support
-        //    its Dynamic Links (which we utilize for the purposes of deferred deep
-        //    linking).
-        BOOL handled
-          = [[FIRDynamicLinks dynamicLinks]
-                handleUniversalLink:userActivity.webpageURL
-                         completion:^(FIRDynamicLink * _Nullable dynamicLink, NSError * _Nullable error) {
-           NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
-           if (firebaseUrl != nil) {
-             userActivity.webpageURL = firebaseUrl;
-             [[JitsiMeet sharedInstance] application:application
-                                continueUserActivity:userActivity
-                                  restorationHandler:restorationHandler];
-           }
-        }];
-
-        if (handled) {
-          return handled;
-        }
-    }
+//    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
+//        // 1. Attempt to handle Universal Links through Firebase in order to support
+//        //    its Dynamic Links (which we utilize for the purposes of deferred deep
+//        //    linking).
+//        BOOL handled
+//          = [[FIRDynamicLinks dynamicLinks]
+//                handleUniversalLink:userActivity.webpageURL
+//                         completion:^(FIRDynamicLink * _Nullable dynamicLink, NSError * _Nullable error) {
+//           NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
+//           if (firebaseUrl != nil) {
+//             userActivity.webpageURL = firebaseUrl;
+//             [[JitsiMeet sharedInstance] application:application
+//                                continueUserActivity:userActivity
+//                                  restorationHandler:restorationHandler];
+//           }
+//        }];
+//
+//        if (handled) {
+//          return handled;
+//        }
+//    }
+//
+//
+//
+//    // 2. Default to plain old, non-Firebase-assisted Universal Links.
+//    return [[JitsiMeet sharedInstance] application:application
+//                              continueUserActivity:userActivity
+//                                restorationHandler:restorationHandler];
   
-  
-
-    // 2. Default to plain old, non-Firebase-assisted Universal Links.
-    return [[JitsiMeet sharedInstance] application:application
-                              continueUserActivity:userActivity
-                                restorationHandler:restorationHandler];
+  return YES;
 }
 
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-
+  NSLog(@"openUrl.deeplinkUrl: %@", url);
+  
     // This shows up during a reload in development, skip it.
     // https://github.com/firebase/firebase-ios-sdk/issues/233
-    if ([[url absoluteString] containsString:@"google/link/?dismiss=1&is_weak_match=1"]) {
-        return NO;
-    }
+//    if ([[url absoluteString] containsString:@"google/link/?dismiss=1&is_weak_match=1"]) {
+//        return NO;
+//    }
 
-    NSURL *openUrl = url;
-
-    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
-        // Process Firebase Dynamic Links
-        FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
-        NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
-        if (firebaseUrl != nil) {
-            openUrl = firebaseUrl;
-        }
-    }
-
-    return [[JitsiMeet sharedInstance] application:app
-                                           openURL:openUrl
-                                           options:options];
+//    NSURL *openUrl = url;
+//
+//    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
+//        // Process Firebase Dynamic Links
+//        FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
+//        NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
+//        if (firebaseUrl != nil) {
+//            openUrl = firebaseUrl;
+//        }
+//    }
+//
+//    return [[JitsiMeet sharedInstance] application:app
+//                                           openURL:openUrl
+//                                           options:options];
+  
+  return YES;
 }
 
 @end
