@@ -65,35 +65,6 @@
     
     return YES;
   }
-
-//    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
-//        // 1. Attempt to handle Universal Links through Firebase in order to support
-//        //    its Dynamic Links (which we utilize for the purposes of deferred deep
-//        //    linking).
-//        BOOL handled
-//          = [[FIRDynamicLinks dynamicLinks]
-//                handleUniversalLink:userActivity.webpageURL
-//                         completion:^(FIRDynamicLink * _Nullable dynamicLink, NSError * _Nullable error) {
-//           NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
-//           if (firebaseUrl != nil) {
-//             userActivity.webpageURL = firebaseUrl;
-//             [[JitsiMeet sharedInstance] application:application
-//                                continueUserActivity:userActivity
-//                                  restorationHandler:restorationHandler];
-//           }
-//        }];
-//
-//        if (handled) {
-//          return handled;
-//        }
-//    }
-//
-//
-//
-//    // 2. Default to plain old, non-Firebase-assisted Universal Links.
-//    return [[JitsiMeet sharedInstance] application:application
-//                              continueUserActivity:userActivity
-//                                restorationHandler:restorationHandler];
   
   return YES;
 }
@@ -102,27 +73,6 @@
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
   NSLog(@"openUrl.deeplinkUrl: %@", url);
-  
-    // This shows up during a reload in development, skip it.
-    // https://github.com/firebase/firebase-ios-sdk/issues/233
-//    if ([[url absoluteString] containsString:@"google/link/?dismiss=1&is_weak_match=1"]) {
-//        return NO;
-//    }
-
-//    NSURL *openUrl = url;
-//
-//    if ([FIRUtilities appContainsRealServiceInfoPlist]) {
-//        // Process Firebase Dynamic Links
-//        FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
-//        NSURL *firebaseUrl = [FIRUtilities extractURL:dynamicLink];
-//        if (firebaseUrl != nil) {
-//            openUrl = firebaseUrl;
-//        }
-//    }
-//
-//    return [[JitsiMeet sharedInstance] application:app
-//                                           openURL:openUrl
-//                                           options:options];
   
   return YES;
 }

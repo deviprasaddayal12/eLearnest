@@ -57,11 +57,7 @@
         
         className = paramsArray[1];
         token = paramsArray[2];
-  //      builder.room = deeplinkUrl;
       }
-  //    else {
-  //      builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:className] stringByAppendingString:@"?jwt="] stringByAppendingString:token];
-  //    }
       
       builder.room = [[[@"https://demo-eschool.examdo.co.in/" stringByAppendingString:className] stringByAppendingString:@"?jwt="] stringByAppendingString:token];
       
@@ -74,6 +70,7 @@
         builder.audioMuted = YES;
         builder.videoMuted = YES;
         builder.welcomePageEnabled = NO;
+        [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
         [builder setConfigOverride:@"requireDisplayName" withBoolean:YES];
     }];
 
@@ -136,6 +133,7 @@
 
 - (void)conferenceTerminated:(NSDictionary *)data {
     [self _onJitsiMeetViewDelegateEvent:@"CONFERENCE_TERMINATED" withData:data];
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)conferenceWillJoin:(NSDictionary *)data {
@@ -184,8 +182,15 @@
 #pragma mark - Helpers
 
 - (void)terminate {
+  NSLog(@"meet.controller.terminate");
     JitsiMeetView *view = (JitsiMeetView *) self.view;
     [view leave];
+  
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"className"];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deeplinkUrl"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
