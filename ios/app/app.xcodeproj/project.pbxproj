@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -133,6 +133,7 @@
 		360184D0AAB71C6CC7A5E598 /* libPods-eLearnest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eLearnest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3792824BE565C3E992A3F703 /* Pods-eLearnest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eLearnest.release.xcconfig"; path = "Target Support Files/Pods-eLearnest/Pods-eLearnest.release.xcconfig"; sourceTree = "<group>"; };
 		3E0F4ED943C0B12BE77F6B45 /* Pods-JitsiMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JitsiMeet.release.xcconfig"; path = "Target Support Files/Pods-JitsiMeet/Pods-JitsiMeet.release.xcconfig"; sourceTree = "<group>"; };
+		45DDDADA275E692800F664C5 /* eLearnestDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eLearnestDebug.entitlements; sourceTree = "<group>"; };
 		4E90F93F2632D1AB001102D4 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		4EB06023260E026600F524C5 /* JitsiMeetBroadcastExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JitsiMeetBroadcastExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB06026260E026600F524C5 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
@@ -273,6 +274,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				45DDDADA275E692800F664C5 /* eLearnestDebug.entitlements */,
 				B3B083EB1D4955FF0069CEE7 /* app.entitlements */,
 				0B26BE711EC5BC4D00EEFB41 /* Frameworks */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -310,6 +312,16 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4575B8A0275EFD7B009ACFA5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		0BEA5C241F7B8F73000D0AB4 /* JitsiMeetCompanion */ = {
@@ -353,6 +365,7 @@
 			buildPhases = (
 				69BC5020DBE393B56BD76636 /* [CP] Check Pods Manifest.lock */,
 				0BBA83C41EC9F7600075A103 /* Run React packager */,
+				4575B8A0275EFD7B009ACFA5 /* Headers */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -363,6 +376,7 @@
 				DE4F6D6E22005C0400DE699E /* Setup Dropbox */,
 				0BEA5C491F7B8F73000D0AB4 /* Embed Watch Content */,
 				4EC49B9025BED71300E76218 /* Embed App Extensions */,
+				4575B89F275EA056009ACFA5 /* Bundle React Native code and images */,
 			);
 			buildRules = (
 			);
@@ -497,6 +511,7 @@
 		};
 		0BBA83C41EC9F7600075A103 /* Run React packager */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -508,6 +523,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "../scripts/run-packager.sh\n";
+		};
+		4575B89F275EA056009ACFA5 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=/opt/homebrew/bin/node\n../node_modules/react-native/packager/react-native-xcode.sh to node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		69BC5020DBE393B56BD76636 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -816,10 +851,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = app.entitlements;
+				CODE_SIGN_ENTITLEMENTS = eLearnestDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = AY3W576FZN;
 				ENABLE_BITCODE = NO;
@@ -829,7 +864,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -837,7 +872,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest;
 				PRODUCT_NAME = eLearnest;
-				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Dev Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Dev Profile 2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -851,7 +886,7 @@
 				CODE_SIGN_ENTITLEMENTS = app.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = AY3W576FZN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = src/Info.plist;
@@ -860,7 +895,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -868,7 +903,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest;
 				PRODUCT_NAME = eLearnest;
-				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Store Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Store Profile 2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -900,7 +935,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.broadcast.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Broadcast Extension Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Dev Screen Sharing Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -936,7 +971,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.broadcast.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Broadcast Extension Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Dev Screen Sharing Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
