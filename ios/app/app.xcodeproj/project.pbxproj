@@ -376,7 +376,6 @@
 				DE4F6D6E22005C0400DE699E /* Setup Dropbox */,
 				0BEA5C491F7B8F73000D0AB4 /* Embed Watch Content */,
 				4EC49B9025BED71300E76218 /* Embed App Extensions */,
-				4575B89F275EA056009ACFA5 /* Bundle React Native code and images */,
 			);
 			buildRules = (
 			);
@@ -523,26 +522,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "../scripts/run-packager.sh\n";
-		};
-		4575B89F275EA056009ACFA5 /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native code and images";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=/opt/homebrew/bin/node\n../node_modules/react-native/packager/react-native-xcode.sh to node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		69BC5020DBE393B56BD76636 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -903,7 +882,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest;
 				PRODUCT_NAME = eLearnest;
-				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Store Profile 2";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Store Profile 3";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
