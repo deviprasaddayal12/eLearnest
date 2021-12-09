@@ -69,7 +69,7 @@
         builder.audioOnly = NO;
         builder.audioMuted = YES;
         builder.videoMuted = YES;
-        builder.welcomePageEnabled = NO;
+//        builder.welcomePageEnabled = NO;
         [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
         [builder setConfigOverride:@"requireDisplayName" withBoolean:YES];
     }];
