@@ -43,17 +43,17 @@
   
   if (userActivity.webpageURL != NULL) {
     NSString *inputUrl = userActivity.webpageURL.absoluteString;
-    NSLog(@"openUrl.deeplink.inputUrl: %@", inputUrl);
+    NSLog(@"userActivity.deeplink.inputUrl: %@", inputUrl);
     NSString *finalDeeplinkUrl = @"";
     if ([inputUrl containsString:@"https"]) {
       NSArray *urlArray = [inputUrl componentsSeparatedByString:@"https"];
-      NSLog(@"openUrl.deeplink.urlArray: %@", urlArray);
-      NSLog(@"openUrl.deeplink.urlArray[0]: %@", urlArray[0]);
+      NSLog(@"userActivity.deeplink.urlArray: %@", urlArray);
+      NSLog(@"userActivity.deeplink.urlArray[0]: %@", urlArray[0]);
       finalDeeplinkUrl = [NSString stringWithFormat:@"https%@", [urlArray lastObject]];
-      NSLog(@"openUrl.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
+      NSLog(@"userActivity.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
     } else
       finalDeeplinkUrl = inputUrl;
-    NSLog(@"openUrl.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
+    NSLog(@"userActivity.deeplink.finalDeeplinkUrl: %@", finalDeeplinkUrl);
     
     [[NSUserDefaults standardUserDefaults] setObject:finalDeeplinkUrl forKey:@"deeplinkUrl"];
     [[NSUserDefaults standardUserDefaults] synchronize];
