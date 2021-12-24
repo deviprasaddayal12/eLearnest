@@ -23,8 +23,18 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		181A745B273D740A00CA24C9 /* ClassTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A1F30273C4DD1009D9DC4 /* ClassTokenViewController.m */; };
+		450B0005277089C10003F238 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC49B8625BED71300E76218 /* ReplayKit.framework */; };
+		450B0007277089C10003F238 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 450B0006277089C10003F238 /* UIKit.framework */; };
+		450B000A277089C10003F238 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B0009277089C10003F238 /* BroadcastSetupViewController.swift */; };
+		450B000E277089C10003F238 /* ScreenShareSetupUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 450B0004277089C10003F238 /* ScreenShareSetupUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		450B0011277089C10003F238 /* ScreenShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 450BFFFA277089C10003F238 /* ScreenShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		450BFFFB277089C10003F238 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC49B8625BED71300E76218 /* ReplayKit.framework */; };
+		450BFFFE277089C10003F238 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450BFFFD277089C10003F238 /* SampleHandler.swift */; };
+		45693FA52770B749006A0D76 /* SampleUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45693FA42770B749006A0D76 /* SampleUploader.swift */; };
+		45693FA72770B782006A0D76 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45693FA62770B782006A0D76 /* SocketConnection.swift */; };
+		45693FA92770B7AE006A0D76 /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45693FA82770B7AE006A0D76 /* DarwinNotificationCenter.swift */; };
+		45693FAB2770B7C9006A0D76 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45693FAA2770B7C9006A0D76 /* Atomic.swift */; };
 		45D9D9E3276E2544009E05A9 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC49B8625BED71300E76218 /* ReplayKit.framework */; };
-		45D9D9E4276E2544009E05A9 /* ReplayKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC49B8625BED71300E76218 /* ReplayKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E90F9402632D1AB001102D4 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E90F93F2632D1AB001102D4 /* Atomic.swift */; };
 		4EB06027260E026600F524C5 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB06026260E026600F524C5 /* SampleHandler.swift */; };
 		4EB0603C260E09D000F524C5 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB06039260E09D000F524C5 /* SocketConnection.swift */; };
@@ -48,12 +58,19 @@
 			remoteGlobalIDString = 0BEA5C301F7B8F73000D0AB4;
 			remoteInfo = "JitsiMeetCompanion Extension";
 		};
-		18543DF327469842007C10D7 /* PBXContainerItemProxy */ = {
+		450B000C277089C10003F238 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4EB06022260E026600F524C5;
-			remoteInfo = JitsiMeetBroadcastExtension;
+			remoteGlobalIDString = 450B0003277089C10003F238;
+			remoteInfo = ScreenShareSetupUI;
+		};
+		450B000F277089C10003F238 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 450BFFF9277089C10003F238;
+			remoteInfo = ScreenShare;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -91,23 +108,14 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		45D9D9E5276E2544009E05A9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				45D9D9E4276E2544009E05A9 /* ReplayKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4EC49B9025BED71300E76218 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				450B0011277089C10003F238 /* ScreenShare.appex in Embed App Extensions */,
+				450B000E277089C10003F238 /* ScreenShareSetupUI.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +153,19 @@
 		360184D0AAB71C6CC7A5E598 /* libPods-eLearnest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eLearnest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3792824BE565C3E992A3F703 /* Pods-eLearnest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eLearnest.release.xcconfig"; path = "Target Support Files/Pods-eLearnest/Pods-eLearnest.release.xcconfig"; sourceTree = "<group>"; };
 		3E0F4ED943C0B12BE77F6B45 /* Pods-JitsiMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JitsiMeet.release.xcconfig"; path = "Target Support Files/Pods-JitsiMeet/Pods-JitsiMeet.release.xcconfig"; sourceTree = "<group>"; };
+		450B0004277089C10003F238 /* ScreenShareSetupUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenShareSetupUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		450B0006277089C10003F238 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		450B0009277089C10003F238 /* BroadcastSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSetupViewController.swift; sourceTree = "<group>"; };
+		450B000B277089C10003F238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		450B0018277089EC0003F238 /* ScreenShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenShare.entitlements; sourceTree = "<group>"; };
+		450B001927708A010003F238 /* ScreenShareSetupUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenShareSetupUI.entitlements; sourceTree = "<group>"; };
+		450BFFFA277089C10003F238 /* ScreenShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		450BFFFD277089C10003F238 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		450BFFFF277089C10003F238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45693FA42770B749006A0D76 /* SampleUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUploader.swift; sourceTree = "<group>"; };
+		45693FA62770B782006A0D76 /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
+		45693FA82770B7AE006A0D76 /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
+		45693FAA2770B7C9006A0D76 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		45DDDADA275E692800F664C5 /* eLearnestDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eLearnestDebug.entitlements; sourceTree = "<group>"; };
 		4E90F93F2632D1AB001102D4 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		4EB06023260E026600F524C5 /* JitsiMeetBroadcastExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JitsiMeetBroadcastExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +213,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		450B0001277089C10003F238 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450B0005277089C10003F238 /* ReplayKit.framework in Frameworks */,
+				450B0007277089C10003F238 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		450BFFF7277089C10003F238 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450BFFFB277089C10003F238 /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4EB06020260E026600F524C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +251,7 @@
 				0BD6B4361EF82A6B00D1F4CD /* WebRTC.framework */,
 				4EC49B8625BED71300E76218 /* ReplayKit.framework */,
 				360184D0AAB71C6CC7A5E598 /* libPods-eLearnest.a */,
+				450B0006277089C10003F238 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -266,6 +305,30 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		450B0008277089C10003F238 /* ScreenShareSetupUI */ = {
+			isa = PBXGroup;
+			children = (
+				450B001927708A010003F238 /* ScreenShareSetupUI.entitlements */,
+				450B0009277089C10003F238 /* BroadcastSetupViewController.swift */,
+				450B000B277089C10003F238 /* Info.plist */,
+			);
+			path = ScreenShareSetupUI;
+			sourceTree = "<group>";
+		};
+		450BFFFC277089C10003F238 /* ScreenShare */ = {
+			isa = PBXGroup;
+			children = (
+				450B0018277089EC0003F238 /* ScreenShare.entitlements */,
+				450BFFFD277089C10003F238 /* SampleHandler.swift */,
+				450BFFFF277089C10003F238 /* Info.plist */,
+				45693FA42770B749006A0D76 /* SampleUploader.swift */,
+				45693FA62770B782006A0D76 /* SocketConnection.swift */,
+				45693FA82770B7AE006A0D76 /* DarwinNotificationCenter.swift */,
+				45693FAA2770B7C9006A0D76 /* Atomic.swift */,
+			);
+			path = ScreenShare;
+			sourceTree = "<group>";
+		};
 		4EB06025260E026600F524C5 /* JitsiMeetBroadcast Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +351,8 @@
 			children = (
 				45DDDADA275E692800F664C5 /* eLearnestDebug.entitlements */,
 				B3B083EB1D4955FF0069CEE7 /* app.entitlements */,
+				450BFFFC277089C10003F238 /* ScreenShare */,
+				450B0008277089C10003F238 /* ScreenShareSetupUI */,
 				0B26BE711EC5BC4D00EEFB41 /* Frameworks */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				13B07FAE1A68108700A75B9A /* src */,
@@ -307,6 +372,8 @@
 				0BEA5C251F7B8F73000D0AB4 /* JitsiMeetCompanion.app */,
 				0BEA5C311F7B8F73000D0AB4 /* JitsiMeetCompanion Extension.appex */,
 				4EB06023260E026600F524C5 /* JitsiMeetBroadcastExtension.appex */,
+				450BFFFA277089C10003F238 /* ScreenShare.appex */,
+				450B0004277089C10003F238 /* ScreenShareSetupUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -392,12 +459,47 @@
 			buildRules = (
 			);
 			dependencies = (
-				18543DF427469842007C10D7 /* PBXTargetDependency */,
+				450B000D277089C10003F238 /* PBXTargetDependency */,
+				450B0010277089C10003F238 /* PBXTargetDependency */,
 			);
 			name = eLearnest;
 			productName = "Jitsi Meet";
 			productReference = 13B07F961A680F5B00A75B9A /* eLearnest.app */;
 			productType = "com.apple.product-type.application";
+		};
+		450B0003277089C10003F238 /* ScreenShareSetupUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 450B0016277089C10003F238 /* Build configuration list for PBXNativeTarget "ScreenShareSetupUI" */;
+			buildPhases = (
+				450B0000277089C10003F238 /* Sources */,
+				450B0001277089C10003F238 /* Frameworks */,
+				450B0002277089C10003F238 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenShareSetupUI;
+			productName = ScreenShareSetupUI;
+			productReference = 450B0004277089C10003F238 /* ScreenShareSetupUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		450BFFF9277089C10003F238 /* ScreenShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 450B0017277089C10003F238 /* Build configuration list for PBXNativeTarget "ScreenShare" */;
+			buildPhases = (
+				450BFFF6277089C10003F238 /* Sources */,
+				450BFFF7277089C10003F238 /* Frameworks */,
+				450BFFF8277089C10003F238 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenShare;
+			productName = ScreenShare;
+			productReference = 450BFFFA277089C10003F238 /* ScreenShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		4EB06022260E026600F524C5 /* JitsiMeetBroadcastExtension */ = {
 			isa = PBXNativeTarget;
@@ -406,7 +508,6 @@
 				4EB0601F260E026600F524C5 /* Sources */,
 				4EB06020260E026600F524C5 /* Frameworks */,
 				4EB06021260E026600F524C5 /* Resources */,
-				45D9D9E5276E2544009E05A9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,7 +524,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
@@ -442,6 +543,12 @@
 								enabled = 1;
 							};
 						};
+					};
+					450B0003277089C10003F238 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					450BFFF9277089C10003F238 = {
+						CreatedOnToolsVersion = 13.1;
 					};
 					4EB06022260E026600F524C5 = {
 						CreatedOnToolsVersion = 12.4;
@@ -465,6 +572,8 @@
 				0BEA5C241F7B8F73000D0AB4 /* JitsiMeetCompanion */,
 				0BEA5C301F7B8F73000D0AB4 /* JitsiMeetCompanion Extension */,
 				4EB06022260E026600F524C5 /* JitsiMeetBroadcastExtension */,
+				450BFFF9277089C10003F238 /* ScreenShare */,
+				450B0003277089C10003F238 /* ScreenShareSetupUI */,
 			);
 		};
 /* End PBXProject section */
@@ -494,6 +603,20 @@
 				0B412F211EDEE95300B1A0A6 /* Main.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		450B0002277089C10003F238 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		450BFFF8277089C10003F238 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +764,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		450B0000277089C10003F238 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450B000A277089C10003F238 /* BroadcastSetupViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		450BFFF6277089C10003F238 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450BFFFE277089C10003F238 /* SampleHandler.swift in Sources */,
+				45693FA72770B782006A0D76 /* SocketConnection.swift in Sources */,
+				45693FA92770B7AE006A0D76 /* DarwinNotificationCenter.swift in Sources */,
+				45693FA52770B749006A0D76 /* SampleUploader.swift in Sources */,
+				45693FAB2770B7C9006A0D76 /* Atomic.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4EB0601F260E026600F524C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -661,10 +804,15 @@
 			target = 0BEA5C301F7B8F73000D0AB4 /* JitsiMeetCompanion Extension */;
 			targetProxy = 0BEA5C331F7B8F73000D0AB4 /* PBXContainerItemProxy */;
 		};
-		18543DF427469842007C10D7 /* PBXTargetDependency */ = {
+		450B000D277089C10003F238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4EB06022260E026600F524C5 /* JitsiMeetBroadcastExtension */;
-			targetProxy = 18543DF327469842007C10D7 /* PBXContainerItemProxy */;
+			target = 450B0003277089C10003F238 /* ScreenShareSetupUI */;
+			targetProxy = 450B000C277089C10003F238 /* PBXContainerItemProxy */;
+		};
+		450B0010277089C10003F238 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 450BFFF9277089C10003F238 /* ScreenShare */;
+			targetProxy = 450B000F277089C10003F238 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -846,7 +994,7 @@
 				CODE_SIGN_ENTITLEMENTS = eLearnestDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = AY3W576FZN;
 				ENABLE_BITCODE = NO;
@@ -856,7 +1004,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -864,7 +1012,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest;
 				PRODUCT_NAME = eLearnest;
-				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Dev Profile 2";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -878,7 +1026,7 @@
 				CODE_SIGN_ENTITLEMENTS = app.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = AY3W576FZN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = src/Info.plist;
@@ -887,7 +1035,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -895,7 +1043,169 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest;
 				PRODUCT_NAME = eLearnest;
-				PROVISIONING_PROFILE_SPECIFIER = "eLearnest - iOS Store Profile 2";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Store";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		450B0012277089C10003F238 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ScreenShare/ScreenShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AY3W576FZN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.ScreenShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Screen Sharing-Dev";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		450B0013277089C10003F238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ScreenShare/ScreenShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AY3W576FZN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.ScreenShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Screen Sharing-Store";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		450B0014277089C10003F238 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ScreenShareSetupUI/ScreenShareSetupUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AY3W576FZN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenShareSetupUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenShareSetupUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.ScreenShareSetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Screen Setup-Dev";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		450B0015277089C10003F238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ScreenShareSetupUI/ScreenShareSetupUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AY3W576FZN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenShareSetupUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenShareSetupUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Facebook. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elearnest.ScreenShareSetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "eLearnest-Screen Setup-Store";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1113,6 +1423,24 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		450B0016277089C10003F238 /* Build configuration list for PBXNativeTarget "ScreenShareSetupUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				450B0014277089C10003F238 /* Debug */,
+				450B0015277089C10003F238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		450B0017277089C10003F238 /* Build configuration list for PBXNativeTarget "ScreenShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				450B0012277089C10003F238 /* Debug */,
+				450B0013277089C10003F238 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
